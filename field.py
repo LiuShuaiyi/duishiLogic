@@ -1,5 +1,8 @@
+# -*- coding: cp936 -*-
+import basic
+
 def construct_map(kind):
-    if kind==TURRET:
+    if kind == TURRET:
         return Map_Turret(kind)
     elif kind==TEMPLE:
         return Map_Temple(kind)

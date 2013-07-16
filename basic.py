@@ -1,23 +1,24 @@
+# -*- coding: cp936 -*-
 import random
 import time
 #常量采用全字母大写，变量及函数全字母小写，类名首字母大写，单词用‘—‘隔开
 random.seed(time.time())
-TURN_MAX=200
-COORDINATE_X_MAX=20
-COORDINATE_Y_MAX=20
-SOLDIERS_NUMBER=10
+TURN_MAX = 200
+COORDINATE_X_MAX = 20
+COORDINATE_Y_MAX = 20
+SOLDIERS_NUMBER = 10
 
-TEMPLE_UP_TIME=9
-TRAP_COST=2
+TEMPLE_UP_TIME = 9
+TRAP_COST = 2
 
-PLAIN=0#平原
-MOUNTAIN=1#山地
-FOREST=2#森林
-BARRIER=3#屏障
-TURRET=4#炮塔
-TRAP=5#陷阱
-TEMPLE=6#神庙
-GEAR=7#机关
+PLAIN = 0 # 平原
+MOUNTAIN = 1 # 山地
+FOREST = 2 # 森林
+BARRIER = 3 # 屏障
+TURRET = 4 # 炮塔
+TRAP = 5 # 陷阱
+TEMPLE = 6 # 神庙
+GEAR = 7 # 机关
 FIELD_EFFECT={PLAIN:[1,0,0,0,0],
               MOUNTAIN:[2,0,0,0,1],
               FOREST:[2,0,0,1,0],
