@@ -2,13 +2,14 @@
 import basic
 
 def construct_map(kind):
-    if kind == TURRET:
-        return Map_Turret(kind)
-    elif kind==TEMPLE:
-        return Map_Temple(kind)
+    "利用类型构造地图对象(除机关单独构造)"
+    if kind == basic.TURRET:
+        return basic.Map_Turret(kind)
+    elif kind == basic.TEMPLE:
+        return basic.Map_Temple(kind)
     else:
-        return Map_Basic(kind)
-#利用类型构造地图对象(除机关单独构造)
+        return basic.Map_Basic(kind)
+
 def get_position(string):
     x=(ord(string[0])-48)*10+(ord(string[1])-48)
     y=(ord(string[3])-48)*10+(ord(string[4])-48)
