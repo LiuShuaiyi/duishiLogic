@@ -5,7 +5,7 @@
 	Dijkstra算法。
 '''
 import basic
-import field
+from field_shelve import read_from, write_to # For testing
 
 def available_spots(map_list, unit_list, source_num):
     '''该函数用于计算当前地图下某单位的活动范围。
@@ -15,43 +15,51 @@ def available_spots(map_list, unit_list, source_num):
     '''
     #计算单位阻挡的位置
     u_block = [unit_list[i][j].position \
-               for i in range(2) for j in range(len(unit_list[i]))]
+               for i in range(2) for j in range(len(unit_list[i]))]        
     d_spots = [] # 所有已经确定可到且松弛完毕的点
-    a_spots = [] # 所有被松弛过，未确定可到的点
-    a_weight = [] # 点中的权值
-    " 将源点加入(备注：这里默认地图加了一圈)"
     s_unit = unit_list[source_num[0]][source_num[1]] # 目标单位
     s_position = s_unit.position # 源点坐标
-    a_spots = [s_position]
-    a_weight = [0]
-    while len(a_spots) != len(map_list) * len(map_list[0]):
+    a_spots = [s_position] # 所有被松弛过，未确定可到的点
+    a_weight = [0]         # 点中的权值
+    row = len(map_list)
+    column = len(map_list[0])
+    while True:
         min_weight = min(a_weight) # 求a_weight中最小值
-        if min_weight >= s_unit.move_range: # 到达极限
+        if min_weight > s_unit.move_range: # 到达极限
             break
         s = a_weight.index(min_weight) # 取得其序号
         # 松弛操作
         p_modify = ((1, 0), (-1, 0), (0, 1), (0, -1))
         for i in range(4):
-            p = a_spots[s] + p_modify # 可以松弛的四个方向点
+            # 可以松弛的四个方向点
+            p = (p_modify[i][0] + a_spots[s][0], p_modify[i][1] + a_spots[s][1])
+            if p[0] < 0 or p[1] < 0 or p[0] >= row or p[0] >= column:
+                continue    
             if not (p in u_block or p in d_spots): # 松弛点的条件
+                lf = map_list[p[0]][p[1]].type # 松弛点的地形 
+                move_cost = basic.FIELD_EFFECT[lf][0] # 该点的体力消耗
                 if p in a_spots: # 更新
-                    lf = map_list[p[0]][p[1]].landform
-                    p_id = a_spots.index(p)
-                    if MOVE_COST[lf] + a_weight[s] < a_weight[p_id]:
-                        a_weight[p_id] = MOVE_COST[lf] + a_weight[s]
-                    else: 			#新加入
-                        lf = map_list[p[0]][p[1]].landform
-                        a_spots.append(p)
-                        a_weight.append(a_weight[s] + MOVE_COST[lf])
+                    p_id = a_spots.index(p) # 松弛点在a_spots里的index
+                    if move_cost + a_weight[s] < a_weight[p_id]:
+                        a_weight[p_id] = move_cost + a_weight[s]
+                else: 			#新加入
+                    try: 
+                        lf = map_list[p[0]][p[1]].type
+                    except IndexError as err:
+                        print p[0], p[1]
+                    a_spots.append(p)
+                    a_weight.append(a_weight[s] + move_cost)
         # 松弛结束后，将 s 从a序列删除， 将它加入到d序列中
-        d.append(a_spots[s])
+        d_spots.append(a_spots[s])
         a_spots.pop(s)
         a_weight.pop(s)
 
     return d_spots
 
 def main():
-    pass
+    (map_list, unit_list) = read_from()
+    print available_spots(map_list, unit_list, (0, 0))
+    raw_input("print anything to continue")
 
 if __name__ == '__main__':
     main()

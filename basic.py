@@ -1,4 +1,6 @@
 # -*- coding: cp936 -*-
+
+
 import random
 import time
 
@@ -70,50 +72,42 @@ ATTACK_EFFECT={SABER:{SABER:1,LANCER:0.5,ARCHER:1,DRAGON_RIDER:0.5,WARRIOR:1.5,W
                HERO_2:{SABER:1,LANCER:1,ARCHER:1,DRAGON_RIDER:2,WARRIOR:1,WIZARD:1,HERO_1:1,HERO_2:1,HERO_3:1},
                HERO_3:{SABER:1,LANCER:1,ARCHER:1,DRAGON_RIDER:2,WARRIOR:1,WIZARD:1,HERO_1:1,HERO_2:1,HERO_3:1}}
 
-class Map_Basic(object):
+class Map_Basic(object): 
     "基本地形：平原、山地、森林、屏障、陷阱和神庙"
     def __init__(self, kind):
-        self.type = kind
+        self.kind = kind
         self.score = FIELD_EFFECT[kind][1]
         self.move_consumption = FIELD_EFFECT[kind][0] #不同地形分数、消耗移动力不同
     def effect(self, w):
         "地形效果" 
-        w.attack += FIELD_EFFECT[self.type][2]
-        w.speed += FIELD_EFFECT[self.type][3]
-        w.defence += FIELD_EFFECT[self.type][4]
-        return [] #???
+        w.attack += FIELD_EFFECT[self.kind][2]
+        w.speed += FIELD_EFFECT[self.kind][3]
+        w.defence += FIELD_EFFECT[self.kind][4]
+        return [] 
     def leave(self, w):
         "离开地形后能力恢复"
-        w.attack -= FIELD_EFFECT[self.type][2]
-        w.speed -= FIELD_EFFECT[self.type][3]
-        w.defence -= FIELD_EFFECT[self.type][4]
+        w.attack -= FIELD_EFFECT[self.kind][2]
+        w.speed -= FIELD_EFFECT[self.kind][3]
+        w.defence -= FIELD_EFFECT[self.kind][4]
 
 class Map_Turret(Map_Basic):
     "地图中的大炮类"
     def effect(self,w):
-        if w.type == ARCHER:
+        if w.kind == ARCHER:
             w.attack_range = TURRET_RANGE # 攻击力也可加
         return []
     def leave(self, w):
-        if w.type == ARCHER:
-            w.attack_range = ABILITY[ARCHER][5]
+        if w.kind == ARCHER:
+            w.attack_range = ABILITY[ARCHER][5] 
 class Map_Gear(Map_Basic):
     "地图中的陷阱类"
     def __init__(self, kind, trap = [], barrier = []):
         super(Map_Gear, self).__init__(kind)
-        self.trap = trap
+        self.trap = trap 
         self.barrier = barrier
         self.on = False
-    def effect(self, w): # what are trap, barrier & m?
-        if not self.on:
-            for i in self.trap:
-                m[i[0]][i[1]]=Map_Trap(TRAP)
-            for i in self.barrier:
-                m[i[0]][i[1]]=Map_Basic(BARRIER)
-            self.on=True
-            return [(TRAP,x) for x in self.trap]+[(BARRIER,x) for x in self.barrier]
-        else:
-            return []
+    def effect(self, w): 
+        pass
 
 class Map_Temple(Map_Basic):
     "地图中的神庙类"
@@ -122,7 +116,7 @@ class Map_Temple(Map_Basic):
         self.time = 0 # 神符刷新时间
         self.up = random.choice([1, 2, 3]) # 神符种类
     def effect(self,w):
-        if self.time>=TEMPLE_UP_TIME and ((w.type<6 and w.up<BASE_UP_LIMIT) or (w.type>5 and w.up>HERO_UP_LIMIT)):
+        if self.time>=TEMPLE_UP_TIME and ((w.kind<6 and w.up<BASE_UP_LIMIT) or (w.kind>5 and w.up>HERO_UP_LIMIT)):
             w.up+=1
             if self.up==1:
                 w.attack+=1
@@ -137,7 +131,7 @@ class Map_Temple(Map_Basic):
 class Base_Unit(object):
     "单位的基本类定义"
     def __init__(self, kind, position = (0, 0)):
-        self.type = kind
+        self.kind = kind
         self.up = 0
         self.position = position
         self.life = ABILITY[kind][0]
@@ -153,14 +147,14 @@ class Base_Unit(object):
     def attack(self, enemy):
         "攻击enemy对象"
         r = random.uniform(0, 100) #"同样的判断问题"
-        enemy.life -= (self.attack-enemy.defence)*(r<=(self.speed*3-enemy.speed*2))*BASE_ATTACK_EFFECT[self.type][enemy.type]    
+        enemy.life -= (self.attack-enemy.defence)*(r<=(self.speed*3-enemy.speed*2))*BASE_ATTACK_EFFECT[self.kind][enemy.kind]    
     def __lt__(self,other):
         return self.move_speed>other.move_speed
 class Wizard(Base_Unit):
     '''def skill(self,other):
         other.life+=self.attack
-        if other.life>ABILITY[other.type][0]:
-            other.life=ABILITY[other.type][0]
+        if other.life>ABILITY[other.kind][0]:
+            other.life=ABILITY[other.kind][0]
         #对other使用回复技能 
         我把这个改成了攻击，这样显得代码重用率高一点。'''
 
@@ -171,10 +165,10 @@ class Hero(Base_Unit):
         pass
 
 class Begin_Info:
-    def __init__(self,whole_map,base,hero_type=[6,6]):
+    def __init__(self,whole_map,base,hero_kind=[6,6]):
         self.map=whole_map
         self.base=base
-        self.hero_type=hero_type
+        self.kind=hero_kind
 class Round_Begin_Info:
     def __init__(self,move_unit,move_range):
         self.id=move_unit
@@ -191,3 +185,4 @@ class Round_End_Info:
         self.route=route
         self.score=score
         self.over=over
+

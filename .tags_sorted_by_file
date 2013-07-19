@@ -1,0 +1,105 @@
+ABILITY	basic.py	/^ABILITY = {SABER:[25,18,95,12,6,[1],5],$/;"	v
+ARCHER	basic.py	/^ARCHER = 2 # ¹­±ø$/;"	v
+ATTACK_EFFECT	basic.py	/^ATTACK_EFFECT={SABER:{SABER:1,LANCER:0.5,ARCHER:1,DRAGON_RIDER:0.5,WARRIOR:1.5,WIZARD:1,HERO_1:1,HERO_2:1,HERO_3:1},$/;"	v
+BARRIER	basic.py	/^BARRIER = 3 # ÆÁÕÏ$/;"	v
+BASE_SCORE	basic.py	/^BASE_SCORE = 1$/;"	v
+BASE_UP_LIMIT	basic.py	/^BASE_UP_LIMIT = 3$/;"	v
+Base_Unit	basic.py	/^class Base_Unit(object):$/;"	c
+Begin_Info	basic.py	/^class Begin_Info:$/;"	c
+COORDINATE_X_MAX	basic.py	/^COORDINATE_X_MAX = 20$/;"	v
+COORDINATE_Y_MAX	basic.py	/^COORDINATE_Y_MAX = 20$/;"	v
+Command	basic.py	/^class Command:$/;"	c
+DRAGON_RIDER	basic.py	/^DRAGON_RIDER = 3 # ·ÉÆï±ø$/;"	v
+FIELD_EFFECT	basic.py	/^FIELD_EFFECT = {PLAIN:[1,0,0,0,0],$/;"	v
+FOREST	basic.py	/^FOREST = 2 # É­ÁÖ$/;"	v
+GEAR	basic.py	/^GEAR = 7 # »ú¹Ø$/;"	v
+HERO_1	basic.py	/^HERO_1 = 6$/;"	v
+HERO_2	basic.py	/^HERO_2 = 7$/;"	v
+HERO_3	basic.py	/^HERO_3 = 8$/;"	v
+HERO_SCORE	basic.py	/^HERO_SCORE = 3$/;"	v
+HERO_UP_LIMIT	basic.py	/^HERO_UP_LIMIT = 5$/;"	v
+Hero	basic.py	/^class Hero(Base_Unit):$/;"	c
+LANCER	basic.py	/^LANCER = 1 # Ç¹±ø$/;"	v
+MOUNTAIN	basic.py	/^MOUNTAIN = 1 # É½µØ$/;"	v
+Map_Basic	basic.py	/^class Map_Basic(object): $/;"	c
+Map_Gear	basic.py	/^class Map_Gear(Map_Basic):$/;"	c
+Map_Temple	basic.py	/^class Map_Temple(Map_Basic):$/;"	c
+Map_Turret	basic.py	/^class Map_Turret(Map_Basic):$/;"	c
+PLAIN	basic.py	/^PLAIN = 0 # Æ½Ô­$/;"	v
+Round_Begin_Info	basic.py	/^class Round_Begin_Info:$/;"	c
+Round_End_Info	basic.py	/^class Round_End_Info:$/;"	c
+SABER	basic.py	/^SABER = 0  # ½£Ê¿$/;"	v
+SOLDIERS_NUMBER	basic.py	/^SOLDIERS_NUMBER = 10$/;"	v
+TEMPLE	basic.py	/^TEMPLE = 6 # ÉñÃí$/;"	v
+TEMPLE_UP_TIME	basic.py	/^TEMPLE_UP_TIME = 9$/;"	v
+TRAP	basic.py	/^TRAP = 5 # ÏÝÚå$/;"	v
+TRAP_COST	basic.py	/^TRAP_COST = 2$/;"	v
+TURN_MAX	basic.py	/^TURN_MAX = 200$/;"	v
+TURRET	basic.py	/^TURRET = 4 # ÅÚËþ$/;"	v
+TURRET_RANGE	basic.py	/^TURRET_RANGE = [5, 12]$/;"	v
+WARRIOR	basic.py	/^WARRIOR = 4 # Õ½Ê¿$/;"	v
+WIZARD	basic.py	/^WIZARD = 5 # ·¨Ê¦$/;"	v
+Wizard	basic.py	/^class Wizard(Base_Unit):$/;"	c
+__init__	basic.py	/^    def __init__(self, kind):$/;"	m	class:Map_Basic
+__init__	basic.py	/^    def __init__(self, kind, position = (0, 0)):$/;"	m	class:Base_Unit
+__init__	basic.py	/^    def __init__(self, kind, trap = [], barrier = []):$/;"	m	class:Map_Gear
+__init__	basic.py	/^    def __init__(self,base,map_change,route,score,over=-1):$/;"	m	class:Round_End_Info
+__init__	basic.py	/^    def __init__(self,kind):$/;"	m	class:Map_Temple
+__init__	basic.py	/^    def __init__(self,move_position,order,target_id=0):$/;"	m	class:Command
+__init__	basic.py	/^    def __init__(self,move_unit,move_range):$/;"	m	class:Round_Begin_Info
+__init__	basic.py	/^    def __init__(self,whole_map,base,hero_type=[6,6]):$/;"	m	class:Begin_Info
+__lt__	basic.py	/^    def __lt__(self,other):$/;"	m	class:Base_Unit	file:
+attack	basic.py	/^    def attack(self, enemy):$/;"	m	class:Base_Unit
+effect	basic.py	/^    def effect(self, w): $/;"	m	class:Map_Gear
+effect	basic.py	/^    def effect(self, w):$/;"	m	class:Map_Basic
+effect	basic.py	/^    def effect(self,w):$/;"	m	class:Map_Temple
+effect	basic.py	/^    def effect(self,w):$/;"	m	class:Map_Turret
+leave	basic.py	/^    def leave(self, w):$/;"	m	class:Map_Basic
+leave	basic.py	/^    def leave(self, w):$/;"	m	class:Map_Turret
+move	basic.py	/^    def move(self, x, y):$/;"	m	class:Base_Unit
+random	basic.py	/^import random$/;"	i
+skill	basic.py	/^    def skill(self,w):$/;"	m	class:Hero
+time	basic.py	/^import time$/;"	i
+basic	field.py	/^import basic$/;"	i
+c	field.py	/^        c=string[0]$/;"	v
+construct_map	field.py	/^def construct_map(kind):$/;"	f
+gear_control	field.py	/^    gear_control=[]$/;"	v
+gear_position	field.py	/^    gear_position=get_position(string[:5])$/;"	v
+get_position	field.py	/^def get_position(string):$/;"	f
+kind	field.py	/^        kind=ord(c)-48$/;"	v
+map_file	field.py	/^map_file=open("Map.txt","r")$/;"	v
+map_temple	field.py	/^map_temple=[]#¼ÇÂ¼ÐèÃ¿»ØºÏ¼ÆÊýµÄÉñÃíÎ»ÖÃ$/;"	v
+position	field.py	/^        position=get_position(string[2:7])$/;"	v
+string	field.py	/^        string=string[6:]$/;"	v
+string	field.py	/^        string=string[8:]$/;"	v
+string	field.py	/^    string=map_file.readline()$/;"	v
+basic	field_shelve.py	/^import basic$/;"	i
+change_path	field_shelve.py	/^def change_path(path):$/;"	f
+default	field_shelve.py	/^default = "default_map.db"$/;"	v
+key	field_shelve.py	/^key = ("map", "base") # å®šä¹‰shelveç±»çš„é”®å€¼ä¸º"map"å’Œ"base"$/;"	v
+main	field_shelve.py	/^def main():$/;"	f
+read_from	field_shelve.py	/^def read_from(filename = default, change_path = 0):$/;"	f
+shelve	field_shelve.py	/^import shelve$/;"	i
+write_to	field_shelve.py	/^def write_to(info_tuple, filename = default, change_path = 0):$/;"	f
+aiInfo	sclientlogic.py	/^aiInfo=sio._recvs(conn)$/;"	v
+cPickle	sclientlogic.py	/^import socket,cPickle,sio,time,t$/;"	i
+conn	sclientlogic.py	/^conn=socket.socket(socket.AF_INET,socket.SOCK_STREAM)$/;"	v
+mapInfo	sclientlogic.py	/^mapInfo=sio._recvs(conn)$/;"	v
+roundCommand	sclientlogic.py	/^	roundCommand=sio._recvs(conn)$/;"	v
+roundEffect	sclientlogic.py	/^	roundEffect={}$/;"	v
+roundInfo	sclientlogic.py	/^	roundInfo=roundInfo$/;"	v
+roundInfo	sclientlogic.py	/^roundInfo={'process':sio.GAME_CONTINUE,'roundNumber':1}$/;"	v
+sio	sclientlogic.py	/^import socket,cPickle,sio,time,t$/;"	i
+socket	sclientlogic.py	/^import socket,cPickle,sio,time,t$/;"	i
+t	sclientlogic.py	/^import socket,cPickle,sio,time,t$/;"	i
+time	sclientlogic.py	/^import socket,cPickle,sio,time,t$/;"	i
+available_spots	shortest.py	/^def available_spots(map_list, unit_list, source_num):$/;"	f
+basic	shortest.py	/^import basic$/;"	i
+field	shortest.py	/^import field$/;"	i
+main	shortest.py	/^def main():$/;"	f
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
