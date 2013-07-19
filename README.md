@@ -16,8 +16,13 @@ The logic part of "duishi15"
 	该模块用于计算单位可以到达的区域。包含函数：
 	
 	````python
+<<<<<<< HEAD
 	available_spots(map_list, unit_list, source_num, prev = None)
     ````
+=======
+  available_spots(map_list, unit_list, source_num, prev = None)
+  ````
+>>>>>>> Update README.md
 
   其中，map_list是地图类的二维列表，储存了地图的信息；
   unit_list是一个2 * n的列表，元素为双方各n个单位的对象；
@@ -29,6 +34,9 @@ The logic part of "duishi15"
   的前一个点，即prev[i] = j代表返回的available_spots中的第i个点在一条最短路中的
   前一个点是available_spots中的第j个点。通过正权图最短路的性质，可知如此迭代的
   话可由prev和返回值求到任意可到点的一条最短路径。
+<<<<<<< HEAD
 	
 
 
+=======
+>>>>>>> Update README.md
