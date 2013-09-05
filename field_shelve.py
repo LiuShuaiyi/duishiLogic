@@ -30,8 +30,8 @@ def read_from(filename = default, change_path = 0):
         shelv_in.close();
 
 def write_to(info_tuple, filename = default, change_path = 0):
-    '''将地图信息和单位信息写入文件, 接受二元元组(map, base)
-    为参数。filename和change_path定义同上。写入成功返回1，
+    '''将地图信息和单位信息写入文件, 接受二元元组info_tuple =
+    (map, base) 为参数。filename和change_path定义同上。写入成功返回1，
     否则返回0.'''
     if change_path:
         pass # TODO!!!

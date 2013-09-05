@@ -1,4 +1,4 @@
-duishiLogic
+﻿duishiLogic
 ===========
 
 The logic part of "duishi15"
@@ -24,7 +24,7 @@ The logic part of "duishi15"
   ````
 >>>>>>> Update README.md
 
-  其中，map_list是地图类的二维列表，储存了地图的信息；
+  其中，map_list是地图类的n维列表，储存了地图的信息；
   unit_list是一个2 * n的列表，元素为双方各n个单位的对象；
   source_num是要求源单位在unit_list中的index, 即source_num是二元组(side_num,
   object_num), side_num = 0, 1; object_num = 0...n-1;
