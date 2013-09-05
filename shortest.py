@@ -54,8 +54,8 @@ def available_spots(map_list, unit_list, source_num, prev = None):
                     lf = map_list[p[0]][p[1]].kind
                     a_spots.append(p)
                     a_weight.append(a_weight[s] + move_cost)
-                    if a_weight[s] + move_cost <= s_unit.move_range:
-                        prev_a.append(d_index)
+                    #if a_weight[s] + move_cost <= s_unit.move_range:
+                    prev_a.append(d_index)
         # 松弛结束后，将 s 从a序列删除， 将它加入到d序列中
         d_spots.append(a_spots[s]) 
         if not prev == None:      
@@ -99,10 +99,14 @@ def GetRoute(maps, units, idnum, end):
 if __name__ == '__main__':
     m = basic.Map_Basic
     u = basic.Base_Unit
-    maps = [[m(0), m(0), m(1), m(1)],
-            [m(1), m(1), m(0), m(1)],
-            [m(1), m(0), m(1), m(0)],
-            [m(0), m(0), m(1), m(1)]]
+    maps = [[m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)],
+        [m(0), m(0), m(1), m(1), m(1), m(1), m(1), m(0)]]
     units0 = [[u(1, (0, 0)), u(2, (0, 1)), u(3, (0, 2))],
           [u(3, (3, 3)), u(2, (3, 2)), u(1, (3, 1))]]
     last = []
